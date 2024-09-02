@@ -2,8 +2,10 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Login</title>
+    <th:block th:insert="~{imports/global}"></th:block>
 </head>
 <body>
+<th:block th:insert="~{layout/header}"></th:block>
 <h1>Login</h1>
 <form th:action="@{/login}" method="post">
     <div>
@@ -21,6 +23,8 @@
     <div th:if="${error}">
         <p style="color:red" th:text="${error}"></p>
     </div>
+    <p style="color: green" th:if="${param.logout}">Log out succeed please reconnect</p>
+    <p style="color: green" th:if="${param.registered}">Registration succeed please connect</p>
 </form>
 </body>
 </html>

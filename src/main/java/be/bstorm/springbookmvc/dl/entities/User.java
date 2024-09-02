@@ -21,9 +21,11 @@ public class User extends BaseEntity<Long> implements UserDetails {
     @Column(unique = true, nullable = false,length = 50)
     private String username;
 
+    @Setter
     @Column(nullable = false)
     private String password;
 
+    @Setter
     private boolean enabled;
 
     @ElementCollection(fetch = FetchType.EAGER)

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Details</title>
+    <th:block th:insert="~{imports/global}"></th:block>
+</head>
+<body>
+<th:block th:insert="~{layout/header}"></th:block>
+<h1>Book Details</h1>
+<h2 th:text="${book.title()}"></h2>
+<p th:text="${book.isbn()}"></p>
+<p th:text="${book.description()}"></p>
+<p th:text="${book.publishedDate()}"></p>
+<p th:text="${book.authorName()}"></p>
+</body>
+</html>

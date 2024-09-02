@@ -12,4 +12,7 @@ public interface UserRepository extends JpaRepository<User,Long> {
 
     @Query("select u from User u where u.username ilike :username")
     Optional<User> findByUsername(String username);
+
+    @Query("select count(u) > 0 from User u where u.username ilike :username")
+    boolean existsByUsername(String username);
 }

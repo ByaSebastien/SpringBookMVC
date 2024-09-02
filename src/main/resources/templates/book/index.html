@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+                xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>BookList</title>
+    <th:block th:insert="~{imports/global}"></th:block>
+</head>
+<body>
+<th:block th:insert="~{layout/header}"></th:block>
+<a sec:authorize="isAuthenticated()" th:href="@{book/create}">Create new Book</a>
+<table>
+    <thead>
+    <tr>
+        <th>ISBN</th>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="book : ${books}" th:object="${book}">
+        <td th:text="*{isbn()}"></td>
+        <td th:text="*{title()}"></td>
+        <td th:text="*{authorName()}"></td>
+        <td>
+            <a class="btn btn-primary" th:href="@{/book/{isbn} (isbn=*{isbn()})}">Details</a>
+            <a class="btn btn-primary" sec:authorize="isAuthenticated()" th:href="@{/book/update/{id} (id=*{id()})}">Update</a>
+            <a class="btn btn-primary" sec:authorize="isAuthenticated()" th:href="@{/book/delete/{id} (id=*{id()})}">Delete</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

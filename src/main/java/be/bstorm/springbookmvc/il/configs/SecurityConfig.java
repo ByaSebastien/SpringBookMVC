@@ -24,17 +24,25 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-                .authorizeHttpRequests(a -> a.requestMatchers("/login", "/register", "/home").permitAll()
+                .authorizeHttpRequests(a -> a.requestMatchers("/",
+                                "/css/**",
+                                "/scripts/**",
+                                "/book",
+                                "/book/{isbn}",
+                                "/book/create",
+                                "/book/update",
+                                "/book/update/{id}").permitAll()
+                        .requestMatchers( "/login","/register").anonymous()
                         .anyRequest().authenticated()
                 )
                 .formLogin(c -> c.loginPage("/login").permitAll()
-                        .defaultSuccessUrl("/home", true)
+                                .defaultSuccessUrl("/")
 //                        .successHandler(authenticationSuccessHandler())
 //                        .failureHandler(authenticationFailureHandler())
                 )
                 .logout(c -> c.logoutUrl("/logout")
-                        .deleteCookies("JSESSIONID")
-                        .invalidateHttpSession(true)
+                                .deleteCookies("JSESSIONID")
+                                .invalidateHttpSession(true)
 //                        .logoutSuccessHandler(logoutSuccessHandler())
 //                        .logoutSuccessUrl("/home")
                 )

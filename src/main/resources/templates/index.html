@@ -5,9 +5,16 @@
     <title>Home</title>
     <th:block th:insert="~{imports/global}"></th:block>
     <link rel="stylesheet" th:href="@{/css/style.css}">
+    <script th:inline="javascript">
+        let isLogged = /*[[${session.isLogged}]]*/ null;
+    </script>
+    <script th:src="@{/scripts/script.js}" defer></script>
 </head>
 <body>
     <th:block th:insert="~{layout/header}"></th:block>
     <h1>Welcome</h1>
+    <form th:action="@{/logout}" method="post">
+        <button>Logout</button>
+    </form>
 </body>
 </html>

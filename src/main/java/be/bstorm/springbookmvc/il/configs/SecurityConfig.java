@@ -36,15 +36,14 @@ public class SecurityConfig {
                         .anyRequest().authenticated()
                 )
                 .formLogin(c -> c.loginPage("/login").permitAll()
-                                .defaultSuccessUrl("/")
-//                        .successHandler(authenticationSuccessHandler())
+                        .successHandler(authenticationSuccessHandler())
 //                        .failureHandler(authenticationFailureHandler())
                 )
                 .logout(c -> c.logoutUrl("/logout")
                                 .deleteCookies("JSESSIONID")
                                 .invalidateHttpSession(true)
 //                        .logoutSuccessHandler(logoutSuccessHandler())
-//                        .logoutSuccessUrl("/home")
+                        .logoutSuccessUrl("/login")
                 )
                 .csrf(AbstractHttpConfigurer::disable);
 
